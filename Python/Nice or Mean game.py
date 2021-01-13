@@ -1,8 +1,8 @@
 ##Python: 3.9
-##
+
 ##Author: Priyanka Thakan
 
-##Purpose: Nice or Mean game
+##Purpose: Nice or Mean game 
 
 
 def start(nice=0, mean=0, name=""):
