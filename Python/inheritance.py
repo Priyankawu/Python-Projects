@@ -28,7 +28,7 @@ mom = Parent('Priyanka','Thak','Female')
 mom.print_info()
 
 child = Child1('SCDS','Seattle Celtic','Cascade Swim Team')
-# ?? Is this how I have to put in the values of parent features-fname,lname,gender??
+## ?? Is this how I have to put in the values of parent features-fname,lname,gender??
 child.fname = "Hirsh"
 #?? Why does this method not work?? 
 child.song()
@@ -37,6 +37,7 @@ child.song()
 # to create Child1 instance, I had to pass in the __init__ described values-school,
 #soccer_team, swim_team. Why?? 
 my_mother = Mother("Urmila", "Jha", "Female")
+#?? This doesn't work
 my_mother.whoamI()
 
 
