@@ -24,7 +24,7 @@ def create_db(self):
         col_fullname TEXT, \
         col_phone TEXT, \
         col_email TEXT, \
-        col_course TEXT;")
+        col_course TEXT)")
         conn.commit()
     conn.close()
     first_run(self) #fill one entry automatically so it doesn't give any errors
@@ -36,7 +36,7 @@ def first_run(self):
         cur = conn.cursor()
         cur,count=count_records(cur)
         if count < 1:
-            cur.excecute("INSERT INTO tbl_students(col_fname,col_lname,col_fullname,col_phone,col_email,col_course) \
+            cur.execute("INSERT INTO tbl_students(col_fname,col_lname,col_fullname,col_phone,col_email,col_course) \
             VALUES (?,?,?,?,?,?)",data);
             conn.commit()
     conn.close()
@@ -57,7 +57,7 @@ def onSelect(self,event):
     value = varList.get(select)#fullname
     print(value)
 
-    conn = sqlite3.connect('db_st_tracking.db')
+    conn = sqlite3.connect('db_students.db')
     with conn:
         cur = conn.cursor()
         cur.execute(""" SELECT col_fname,col_lname,col_phone,col_email,col_course FROM tbl_students
@@ -95,7 +95,7 @@ def addToList(self):
     if not "@" or not "." in var_email:
         print("Incorrect email format!!!")
     if (len(var_fname)>0) and (len(var_lname)>0) and (len(var_phone)>0) and(len(var_email)>0) and(len(var_course)>0):
-        conn = sqlite3.connect('db_st_tracking.db')
+        conn = sqlite3.connect('db_students.db')
         with conn:
             cur = conn.cursor()
             cur.execute(""" SELECT COUNT(col_fullname) FROM tbl_students \
@@ -125,7 +125,7 @@ def onClear(self):
 
 def onDelete(self):
     var_select = self.listBox1.get(self.listBox1.curselection()) #selected value in listBox
-    conn = sqlite3.connect('db_st_tracking.db')
+    conn = sqlite3.connect('db_students.db')
     with conn:
         cur = conn.cursor()
         cur.execute("SELECT COUNT(*)FROM tbl_students")
@@ -134,7 +134,7 @@ def onDelete(self):
             confirm = messagebox.askokcancel("Delete Confirmation", "All informaiton associated with, ({}) \n \
                     will be permanently deleted from the database. \n\nProceed with the deletion request?".format(var_select))
             if confirm:
-                conn = sqlite3.connect('db_st_tracking.db')
+                conn = sqlite3.connect('db_students.db')
                 with conn:
                     cur = conn.cursor()
                     cur.execute("DELETE FROM tbl_students WHERE col_fullname='{}':".format(var_select))
@@ -161,15 +161,15 @@ def onDeleted(self):
 def onRefresh(self):
     #Populate the lsitbox, coinciding with the database
     self.listBox1.delete(0,END)
-    conn = sqlite3.connect('db_st_tracking.db')
+    conn = sqlite3.connect('db_students.db')
     with conn:
         cur = conn.cursor()
         cur.execute("""SELECT COUNT(*) FROM tbl_students""")
-        count = cursor.fetchone()[0]
+        count = cur.fetchone()[0]
         i=0
         while i<count:
-            cursor.execute("""SELECT col_fullname FROM tbl_students""")
-            varList = cursor.fetchall()[i]
+            cur.execute("""SELECT col_fullname FROM tbl_students""")
+            varList = cur.fetchall()[i]
             for item in varList:
                 self.listBox1.insert(0,str(item))
                 i+=1

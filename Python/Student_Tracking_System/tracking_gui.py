@@ -38,8 +38,8 @@ def load_gui(self):
     self.btn_delete.grid(row=10, column=5, padx=(30,40), pady=(0,0))
 
     #The big information box
-    self.listBox1 = tk.Listbox(self.master,exportselection=0,text="Information")
-    self.listBox1.grid(row=1, column=2, columnspan=3, rowspan=7, sticky=N+E+S+W)
+    self.listBox1 = tk.Listbox(self.master,exportselection=0)
+    self.listBox1.grid(row=1, column=3, columnspan=5, rowspan=8, padx=(20,0), sticky=N+E+S+W)
     #widget.bind(event handler)
     self.listBox1.bind('<<ListboxSelect>>',lambda event:tracking_func.onSelect(self,event))
 
