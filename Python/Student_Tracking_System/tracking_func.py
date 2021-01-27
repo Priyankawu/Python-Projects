@@ -51,7 +51,7 @@ def count_records(cur):
 #Delete the item the user selects to delete
 def onSelect(self,event):
     varList = event.widget
-    print("varList "+varList)
+    
     select = varList.curselection()[0] #comes as tuple
     print(select)
     value = varList.get(select)#fullname
@@ -83,7 +83,7 @@ def onSelect(self,event):
 def addToList(self):
     var_fname = self.txt_fname.get()    # get(): gets the text from the entry boxes
     var_lname = self.txt_lname.get()
-    var_fname=var_fname.strip()         #remove blank spaces before and after
+    var_fname = var_fname.strip()         #remove blank spaces before and after
     var_lname = var_lname.strip()
     var_fname = var_fname.title()       # capitalizes the first letter
     var_lname = var_lname.title()
@@ -100,19 +100,19 @@ def addToList(self):
             cur = conn.cursor()
             cur.execute(""" SELECT COUNT(col_fullname) FROM tbl_students \
                     WHERE col_fullname = '{}'""".format(var_fullname))
-            count = cursor.fetchone()[0]
+            count = cur.fetchone()[0]
             chkName = count
             if chkName == 0: #no fullname in db so we can add data
                 print("chkName: {}".format(chkName))
-                cursor.execute("""INSERT INTO tbl_students(col_fname,col_lname,col_fullname,col_phone,col_email,col_course) \
+                cur.execute("""INSERT INTO tbl_students(col_fname,col_lname,col_fullname,col_phone,col_email,col_course) \
                 VALUES (?,?,?,?,?,?)""",(var_fname,var_lname,var_fullname,var_phone,var_email,var_course))
-                self.listBox1.insert(END,var_fullnmae)
+                self.listBox1.insert(END,var_fullname)
                 onClear(self)
             else:
                 messagebox.showerror("Name Error","'{}' already exists in the databse! Please choose a different name.".format(var_fullname))
                 onClear(self) #call the function to clear all teh textboxes
             conn.commit()
-            conn.close()
+        conn.close()
     else:
         messagebox.showerror("Missing Text Error", "Please ensure that there is data in all four fields.")
 
