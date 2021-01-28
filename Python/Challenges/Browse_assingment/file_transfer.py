@@ -1,36 +1,17 @@
-
-import tkinter as tk
-from tkinter import filedialog
-import pytz
-
-import ch_main
-import ch_gui
+#This is to work with the os and shutil (file operations for one or multiple files)
+# module to transfer/copy/delete files in your python program
 
 import os
 import shutil
 import time
 
-
-def text_path(self,i):
-    path = filedialog.askdirectory() #path a stringVar?
-    name = "txt"+str(i)
-    print("name is: "+name)
-    self.name.insert(0,path)
-          
-    #when button is pressed, user's selected path is retained by
-    #askdirectory() method and printed in GUI's text widget
-    
-
-#Transfers the files feom the source to the destination folder
-def file_transfer(self):
-  
+def file_transfer():
+    #set where the source of files are- FolderA
     """ Notice the '/' everywhere and even in the end """
-    # Get the source path from the Entry box
-    source= self.txt1.get()#"C:/Users/sanjeev/Desktop/FolderA/"
-    source = source + '/'
-    print(source)
-    # get the destination path from the Entry box
-    destination= self.txt2.get() + "/"#"C:/Users/sanjeev/Desktop/FolderB/"
+
+    source= "C:/Users/sanjeev/Desktop/FolderA/"
+    # set where the destination of files is- FolderB
+    destination= "C:/Users/sanjeev/Desktop/FolderB/"
     files = os.listdir(source)
     current_time = time.time()
     print(current_time)
@@ -48,3 +29,5 @@ def file_transfer(self):
         if(diff < 86400): #last 24 hours=86400sec
             shutil.move(source+i,destination)
      
+
+
