@@ -11,7 +11,7 @@ def load_gui(self):
     self.entry_box.grid(row=0, column=0)
 
     self.bt = tk.Button(self.master,text="Create", width=15,
-                height=2,command=lambda:webpage_func.createHTML_file(self))
+                height=2,command=lambda:webpage_func.createHTML_file(self.entry_box.get()))
     self.bt.grid(row=1, column=0)
 
    
