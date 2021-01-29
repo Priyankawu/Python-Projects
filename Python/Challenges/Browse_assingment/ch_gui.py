@@ -7,10 +7,10 @@ import ch_func
 
 def load_gui(self):
     #passing in 1 in lambda so the file path can be inserted in Entry box 1.
-    self.btn_browse1 = tk.Button(self.master,text = "Browse...", width=13, command =lambda:ch_func.text_path(self,1))
+    self.btn_browse1 = tk.Button(self.master,text = "Browse...", width=13, command =lambda:ch_func.text_path1(self))
     self.btn_browse1.grid(row=1, column=0, padx=(20,0), pady=(50,0))
     #passing in 2 in lambda so the file path can be inserted in the appropriate Entry box 2.
-    self.btn_browse2 = tk.Button(self.master,text = "Browse...",width=13, command=lambda:ch_func.text_path(self,2))
+    self.btn_browse2 = tk.Button(self.master,text = "Browse...",width=13, command=lambda:ch_func.text_path2(self))
     self.btn_browse2.grid(row=2, column=0, padx=(20,0), pady=(30,0), columnspan=1)
     self.btn_check = tk.Button(self.master,text="Check for files...",width=13, height=2,
                                comman=lambda:ch_func.file_transfer(self))
